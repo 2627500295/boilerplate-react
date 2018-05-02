@@ -1,0 +1,71 @@
+# OS
+## Mac OS X
+.DS_Store
+
+## Microsoft Windows
+Thumbs.db
+
+
+# Editor
+## IntelliJ IDEA
+*/.idea/
+.idea/
+
+
+# Package
+## Yarn
+yarn-debug.log*
+yarn-error.log*
+.yarn-integrity
+yarn.lock
+
+## Npm
+npm-debug.log*
+.npm
+package-lock.json
+
+### Output of 'npm pack'
+*.tgz
+
+## Bower
+bower_components
+
+## Dependency directories
+node_modules/
+jspm_packages/
+
+
+# Testing
+## eslint cache
+.eslintcache
+
+
+# Language
+## Typescript v1 declaration files
+typings/
+
+
+# Other
+## Logs
+logs
+*.log
+
+## Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+## dotenv environment variables file
+.env
+
+## Temp
+*.bak
+*.tem
+*.temp
+#.swp
+*.*~
+~*.*
+
+## Dist
+dist
