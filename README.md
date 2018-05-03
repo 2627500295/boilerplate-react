@@ -7,7 +7,7 @@ git clone https://github.com/2627500295/react-boilerplate.git --branch ts
 
 ## ECMAScript
 ```bash
-git clone https://github.com/2627500295/react-boilerplate.git --branch ts
+git clone https://github.com/2627500295/react-boilerplate.git --branch es
 ```
 
 ## Suport
@@ -19,3 +19,4 @@ git clone https://github.com/2627500295/react-boilerplate.git --branch ts
 * [x] development
   * [ ] Hot
 * [ ] production
+
