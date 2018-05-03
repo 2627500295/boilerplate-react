@@ -112,6 +112,7 @@
     "tslint": "^5.7.0",
     "tslint-config-airbnb": "^5.8.0",
     "tslint-config-prettier": "^1.12.0",
+    "tslint-loader": "^3.6.0",
     "tslint-react": "^3.5.1",
     "typescript": "^2.8.3",
     "typings-for-css-modules-loader": "^1.7.0",

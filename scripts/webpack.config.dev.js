@@ -1,45 +1,48 @@
-
-const path = require('path');
-const fs = require('fs');
-
 const webpack = require('webpack');
-
-const autoprefixer = require('autoprefixer');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const appDirectory = fs.realpathSync(process.cwd());
-
-const resolve = (relative) => {
-  return path.resolve(appDirectory, relative);
-}
-
-const resolveOwn = (relative) => {
-  return path.resolve(__dirname, '..', relative);
-};
-
-
+const { appDirectory, resolve, resolveOwn } = require('./paths');
 
 
 module.exports = {
+  //
+  // 模式
+  //
   mode: "development",
 
-  // devtool: "cheap-module-source-map", // 报错的时候在控制台输出哪一行报错
+
+  //
+  // 开发工具
+  //    "cheap-module-source-map", 
+  //    'inline-source-map': 报错的时候在控制台输出哪一行报错
+  //
   devtool: 'inline-source-map',
 
-  context: appDirectory, // entry 和 module.rules.loader 选项相对于此目录开始解析
+
+  //
+  // 上下文
+  //    entry 和 module.rules.loader 选项相对于此目录开始解析
+  //
+  context: appDirectory,
 
 
+  //
+  // 入口
+  //
   entry: {
     app: [
       require.resolve('./polyfills'),
-      './src/index.js'
+      './src/index.tsx'
     ]
   },
 
 
+  //
+  // 出口
+  //
   output: {
     pathinfo: true,
     filename: "static/js/[name].[hash:8].js",
@@ -48,29 +51,66 @@ module.exports = {
   },
 
 
+  //
+  // resolve
+  //
   resolve: {
+    //
+    // 自动识别后缀
+    //    使用import时可以忽略后缀
+    //
     extensions: [
       ".ts", ".tsx",
       '.js', '.jsx', '.mjs',
       '.json',
     ],
 
+
+    //
+    // 别名
+    //
+    alias: {
+      '@': resolve('src')
+    },
+
+
+    //
+    // 模块目录
+    //
     modules: [
       'node_modules',
     ],
-
-    alias: {
-      '@': resolve('src')
-    }
   },
 
 
+  //
+  // 模块
+  //
   module: {
+
+    //
+    // 规则
+    //
     rules: [
+
+      //
+      // ESLint
+      //
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
         loader: "eslint-loader",
+        include: resolve('src'),
+        exclude: /^(node_modules|bower_components)$/,
+      },
+
+      //
+      // TSLint
+      //
+      {
+        test: /\.(ts|tsx)$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
         include: resolve('src'),
         exclude: /^(node_modules|bower_components)$/,
       },
@@ -85,6 +125,7 @@ module.exports = {
             use: { loader: "babel-loader", options: { cacheDirectory: true, plugins: [ 'react-hot-loader/babel' ], }, },
             exclude: /^(node_modules|bower_components)$/,
           },
+
 
           //
           // React TS
@@ -109,6 +150,7 @@ module.exports = {
             exclude: /^node_modules$/,
           },
 
+
           //
           // PostCSS
           //
@@ -116,10 +158,11 @@ module.exports = {
             test: /\.postcss$/,
             "use": [
               { loader: "style-loader", options: { "sourceMap": true, } },
-              { loader: "css-loader", options: { "sourceMap": true } },
+              { loader: "css-loader", options: { "sourceMap": true, modules: true } },
               { loader: "postcss-loader", options: { "sourceMap": true } }
             ]
           },
+
 
           //
           // Stylus
@@ -128,17 +171,18 @@ module.exports = {
             test: /\.(stylus|styl)$/,
             "use": [
               { loader: "style-loader", options: { "sourceMap": true, } },
-              { loader: "css-loader", options: { "sourceMap": true } },
+              { loader: "css-loader", options: { "sourceMap": true, modules: true } },
               { loader: "postcss-loader", options: { "sourceMap": true } },
               { loader: "stylus-loader", options: { "sourceMap": true } }
             ]
           },
 
+
           //
           // Sass
           // 
           {
-            test: /\.s[a|c]ss$/,
+            test: /\.(sass|scss)$/,
             use: [
               { loader: "style-loader", options: { "sourceMap": true, } },
               { loader: "css-loader", options: { "sourceMap": true, modules: true } },
@@ -147,6 +191,7 @@ module.exports = {
             ],
             exclude: /^node_modules$/,
           },
+
 
           //
           // Less
@@ -161,6 +206,8 @@ module.exports = {
             ],
             exclude: /^node_modules$/,
           },
+
+
           //
           // Images
           // 
@@ -170,6 +217,17 @@ module.exports = {
             options: { limit: 10000, name: "assets/img/[name].[hash:7].[ext]" }
           },
 
+
+          //
+          // Fonts
+          //
+          {
+            test: /\.(woff|woff2|eot|ttf|otf|svg)(\?.*)?$/,
+            loader: "url-loader",
+            options: { limit: 10000, name: "fonts/[name].[hash:7].[ext]" }
+          },
+
+
           //
           // Video
           //
@@ -178,22 +236,15 @@ module.exports = {
             loader: "url-loader",
             options: { limit: 10000, name: "media/[name].[hash:7].[ext]" }
           },
-
-          //
-          // Fonts
-          //
-          {
-            test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-            loader: "url-loader",
-            options: { limit: 10000, name: "fonts/[name].[hash:7].[ext]" }
-          },
         ]
       },
-
     ]
   },
 
 
+  //
+  // 插件
+  //
   plugins: [
     new CleanWebpackPlugin('dist'),
 
@@ -203,7 +254,8 @@ module.exports = {
 
     // new ExtractTextPlugin('[name].css'),
 
-    new webpack.ProvidePlugin({ //下载Jquery库
+    new webpack.ProvidePlugin({
+      //下载Jquery库
       $: 'jquery'
     }),
 
@@ -220,8 +272,16 @@ module.exports = {
     }),
   ],
 
+
+  //
+  // 优化
+  //
   optimization: {},
 
+
+  //
+  // 开发服务器
+  //
   devServer: {
     historyApiFallback: true,
     host: "localhost",

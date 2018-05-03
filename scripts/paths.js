@@ -11,7 +11,8 @@ const resolveOwn = (dir) => {
   return path.resolve(__dirname, '..', dir);
 };
 
-
 module.exports = {
-  resolve
+  appDirectory,
+  resolve,
+  resolveOwn
 }
