@@ -17,5 +17,5 @@ git clone https://github.com/2627500295/react-boilerplate.git --branch ts
 
 ## TODO
 * [x] development
-  * [] Hot
-* [] production
+  * [ ] Hot
+* [ ] production
