@@ -38,16 +38,6 @@ baseConfig.entry.app = [].concat(
   [resolve('src/index.tsx')]
 );
 
-baseConfig.module.rules.forEach((rule, index) => {
-  if (rule.oneOf) {
-    rule.oneOf.forEach((r) => {
-      if (r.loader === "babel-loader") {
-        r.options.plugins = ['react-hot-loader/babel']
-      }
-    })
-  }
-});
-
 // 开发配置
 const devConfig = merge(baseConfig, {
   // 模式
