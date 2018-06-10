@@ -1,0 +1,544 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-microsoft-contrib"
+  ],
+  "rules": {
+    /**
+    * INFO: Security Rules
+    */
+    "no-eval": true,
+
+    /**
+     * INFO: Common Bugs and Correctness.
+     */
+    "await-promise": true,
+    "forin": true,
+    "label-position": true,
+    "match-default-export-name": true,
+    "no-any": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+
+    // 禁用控制台
+    "no-console": [
+      true,
+      "log",
+      "error",
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+
+    "no-debugger": true,
+    "no-duplicate-super": true,
+    "no-duplicate-switch-case": true,
+    "no-duplicate-variable": true,
+    "no-empty": true,
+    "no-floating-promises": true,
+    "no-for-in-array": true,
+
+    // 不允许在项目的package.json中导入未列为依赖项的模块
+    "no-implicit-dependencies": [
+      false,
+      "dev"
+    ],
+
+    // 禁止无副作用的导入
+    "no-import-side-effect": false,
+
+    "no-invalid-template-strings": true,
+    "no-invalid-this": true,
+
+    "no-misused-new": true,
+    "no-non-null-assertion": true,
+    "no-object-literal-type-assertion": true,
+    "no-parameter-reassignment": true,
+    "no-reference-import": true,
+    "no-sparse-arrays": true,
+    "no-string-literal": true,
+    "no-string-throw": true,
+
+    // 禁止导入任何子模块
+    "no-submodule-imports": [true, "@"],
+
+    "no-unnecessary-callback-wrapper": true,
+    "no-unnecessary-initializer": true,
+    "no-unsafe-any": true,
+    "no-unsafe-finally": true,
+    "no-unused-expression": true,
+    "no-use-before-declare": true,
+    "promise-function-async": true,
+    "radix": true,
+    "restrict-plus-operands": true, // the plus operand should really only be used for strings and numbers
+    "strict-boolean-expressions": true,
+    "switch-default": true,
+    "switch-final-break": true,
+    "triple-equals": [true, "allow-null-check"],
+    "use-isnan": true,
+
+    /**
+     * INFO: Code Clarity.
+     */
+    "adjacent-overload-signatures": true,
+    "array-type": [true, "array"],
+    "arrow-parens": false, // for simple functions the parens on arrow functions are not needed
+    "ban-comma-operator": true, // possibly controversial
+    "binary-expression-operand-order": true,
+    "callable-types": true,
+
+    // class名
+    // 文件同名, 驼峰
+    "class-name": true,
+    "comment-format": true,
+    "completed-docs": [true, "classes"],
+
+    // 接口名
+    "interface-name": [
+      true,
+      "always-prefix"
+    ],
+
+    "jsdoc-format": true,
+    "max-classes-per-file": [true, 3],  // we generally recommend making one public class per file
+    "max-file-line-count": true,
+
+    // 行最大长度 120 字符
+    "max-line-length": [
+      true,
+      140
+    ],
+
+    // 类成员显式可见性声明
+    "member-access": [
+      true,
+      "check-accessor",
+      "check-constructor",
+      "check-parameter-property"
+    ],
+
+    // 成员排序
+    "member-ordering": [
+      true,
+      {
+        "order": "fields-first"
+      }
+    ],
+
+    "new-parens": true,
+    "no-construct": true,
+
+    // 不允许ES6样式模块中的默认导出
+    "no-default-export": false,
+
+    "no-duplicate-imports": true,
+
+    // 禁止空的 interface
+    "no-empty-interface": true,
+
+    "no-inferrable-types": false, // turn no-inferrable-types off in order to make the code consistent in its use of type decorations
+
+    "no-null-keyword": false, // turn no-null-keyword off and use undefined to mean not initialized and null to mean without a value
+    "no-parameter-properties": true,
+
+    // 禁用 jsdoc 中的类型注释
+    "no-redundant-jsdoc": true,
+
+    // 禁用 require
+    "no-require-imports": true,
+
+    "no-return-await": true,
+    "no-shadowed-variable": true,
+
+    // 不要将`this`的成员赋值给局部变量
+    "no-this-assignment": false,
+
+
+    "no-unnecessary-class": true,
+
+    "no-unnecessary-qualifier": true,
+    "no-unnecessary-type-assertion": true,
+    "no-var-keyword": true,
+    "no-var-requires": true,
+    "no-void-expression": true,
+    "number-literal-format": true,
+    "object-literal-sort-keys": false, // turn object-literal-sort-keys off and sort keys in a meaningful manner
+    "one-variable-per-declaration": true,
+    "only-arrow-functions": false,  // there are many valid reasons to declare a function
+
+    // 导入排序
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "any",  // 导入源排序
+        "named-imports-order": "any"    // 导入命名排序
+      }
+    ],
+
+    "prefer-const": true,
+    "prefer-for-of": true,
+    "prefer-method-signature": true,
+    "prefer-object-spread": true,
+    "prefer-template": true,
+    "type-literal-delimiter": true,
+
+    // 需要类型定义
+    "typedef": [
+      true,
+      "call-signature",
+      "arrow-call-signature",
+      "parameter",
+      "arrow-parameter",
+      "property-declaration",
+      "variable-declaration",
+      "member-variable-declaration"
+    ],
+
+    "unified-signatures": true,
+    "use-default-type-parameter": true,
+
+    // 变量名
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-pascal-case"
+    ],
+
+    // 需要 JSDoc 注释
+    "missing-jsdoc": false,
+
+    /**
+     * INFO: Accessibility.
+     */
+
+
+
+    /**
+     * Whitespace related rules.
+     */
+
+    // 对齐
+    "align": [
+      true,
+      "parameters",
+      "arguments",
+      "statements"
+    ],
+
+    "curly": true,
+    "encoding": true,
+    "eofline": true,
+    "import-spacing": true,
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "linebreak-style": true,
+    "newline-before-return": true,
+
+    // 禁止一个或多个空白行
+    "no-consecutive-blank-lines": [
+      true,
+      1
+    ],
+
+
+    "no-empty-line-after-opening-brace": false,
+    "no-irregular-whitespace": true,
+
+    // 禁止尾随空格
+    "no-trailing-whitespace": true,
+
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
+
+    // 一行
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-finally",
+      "check-whitespace"
+    ],
+
+    // 单引号
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double",
+      "avoid-escape"
+    ],
+
+    "semicolon": [
+      true,
+      "always"
+    ],
+
+    // 括号内空格
+    "space-within-parens": true,
+
+    // 尾随逗号
+    "trailing-comma": [
+      true,
+      {
+        "singleline": "never",
+        "multiline": "never"
+      }
+    ],
+
+    // 要求或禁止空白的类型定义
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      },
+      {
+        "call-signature": "onespace",
+        "index-signature": "onespace",
+        "parameter": "onespace",
+        "property-declaration": "onespace",
+        "variable-declaration": "onespace"
+      }
+    ],
+
+    // 空格
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-preblock",
+      "check-separator",
+      "check-type",
+      "check-typecast"
+    ],
+
+    /**
+     * INFO: Controversial/Configurable rules.
+     */
+
+    // 禁止使用特定的功能或全局方法
+    "ban": false,                // only enable this if you have some code pattern that you want to ban
+
+    "ban-types": true,
+    "cyclomatic-complexity": true,
+    "deprecation": false, // deprecated APIs are sometimes unavoidable
+    "file-header": false,  // enable this rule only if you are legally required to add a file header
+    "import-blacklist": false,  // enable and configure this as you desire
+    "interface-over-type-literal": false,  // there are plenty of reasons to prefer interfaces
+    "no-angle-bracket-type-assertion": false,  // pick either type-cast format and use it consistently
+    "no-inferred-empty-object-type": false,  // if the compiler is satisfied then this is probably not an issue
+    "no-internal-module": false, // only enable this if you are not using internal modules
+    "no-magic-numbers": false,  // by default it will find too many false positives
+    "no-mergeable-namespace": false,  // your project may require mergeable namespaces
+    "no-namespace": false,       // only enable this if you are not using modules/namespaces
+    "no-reference": true,        // in general you should use a module system and not /// reference imports
+    "no-unexternalized-strings": false, // the VS Code team has a specific localization process that this rule enforces
+    "object-literal-shorthand": false,  // object-literal-shorthand offers an abbreviation not an abstraction
+    "prefer-conditional-expression": false, // unnecessarily strict
+    "prefer-switch": false, // more of a style preference
+    "return-undefined": false, // this actually affect the readability of the code
+    "space-before-function-paren": false,   // turn this on if this is really your coding standard
+
+    /**
+     * INFO: Deprecated rules.
+     */
+    "missing-optional-annotation": false,  // now supported by TypeScript compiler
+    "no-duplicate-case": false,
+    "no-duplicate-parameter-names": false, // now supported by TypeScript compiler
+    "no-empty-interfaces": false, // use tslint no-empty-interface rule instead
+    "no-missing-visibility-modifiers": false, // use tslint member-access rule instead
+    "no-multiple-var-decl": false,         // use tslint one-variable-per-declaration rule instead
+    "no-stateless-class": false,
+    "no-switch-case-fall-through": false,  // now supported by TypeScript compiler
+    "no-var-self": false,
+    "react-tsx-curly-spacing": false,
+    "typeof-compare": false,               // the valid-typeof rule is currently superior to this version
+    "valid-typeof": false,
+
+
+
+    //
+    // React TSLint Rules
+    //    tslint-react
+    //    https://github.com/palantir/tslint-react
+    //
+
+    // 对齐
+    "jsx-alignment": true,
+
+    // Boolan
+    "jsx-boolean-value": true,
+
+
+    "jsx-equals-spacing": [
+      true,
+      "never"
+    ],
+
+    // Key
+    "jsx-key": true,
+
+    // 禁止bind
+    "jsx-no-bind": true,
+    "jsx-no-lambda": true,
+    "jsx-no-multiline-js": true,
+    "jsx-no-string-ref": true,
+    "jsx-self-close": true,
+    "jsx-wrap-multiline": true,
+
+    // JSX 大括号空格
+    "jsx-curly-spacing": [
+      true,
+      "always"
+    ],
+
+
+
+    //
+    // Microsoft TSLint Rules
+    //    tslint-microsoft-contrib
+    //    https://github.com/Microsoft/tslint-microsoft-contrib
+    //
+
+    /**
+     * Security Rules
+     */
+    //
+    "insecure-random": true,
+    "no-banned-terms": true,
+    "no-cookies": true,
+    "no-delete-expression": true,
+    "no-disable-auto-sanitization": true,
+    "no-document-domain": true,
+    "no-document-write": true,
+    "no-exec-script": true,
+    "no-function-constructor-with-string-args": true,
+    "no-http-string": [true, "http://www.example.com/?.*", "http://www.examples.com/?.*"],
+    "no-inner-html": true,
+    "no-octal-literal": true,
+
+    // 禁止保留字keywords
+    "no-reserved-keywords": false,
+
+    "no-string-based-set-immediate": true,
+    "no-string-based-set-interval": true,
+    "no-string-based-set-timeout": true,
+    "non-literal-require": true,
+    "possible-timing-attack": true,
+    "react-anchor-blank-noopener": true,
+    "react-iframe-missing-sandbox": true,
+    "react-no-dangerous-html": true,
+    "no-constant-condition": true,
+    "no-control-regex": true,
+
+    // 禁止自增递增和递减
+    // https://github.com/airbnb/javascript/issues/540
+    "no-increment-decrement": true,
+    "no-invalid-regexp": true,
+    "no-jquery-raw-elements": true,
+    "no-regex-spaces": true,
+    "no-unnecessary-bind": true,
+    "no-unnecessary-override": true,
+    "no-with-statement": true,
+    "promise-must-complete": true,
+    "react-this-binding-issue": true,
+    "react-unused-props-and-state": true,
+    "use-named-parameter": true,
+
+    /**
+     * Common Bugs and Correctness.
+     */
+    //
+    "jquery-deferred-must-complete": true,
+    "mocha-avoid-only": true,
+    "mocha-no-side-effect-code": true,
+    "no-backbone-get-set-outside-model": true,
+
+    /**
+     * Code Clarity.
+     */
+    //
+    "chai-prefer-contains-to-index-of": true,
+    "chai-vague-errors": true,
+
+    // 导出名和文件名一致, 首字母大写
+    "export-name": false,
+
+    // 函数名 (React部分函数名不符合TSLint规范)
+    "function-name": false,
+
+    // 导入名
+    "import-name": false,
+
+    "max-func-body-length": [true, 100, {"ignore-parameters-to-function-regex": "describe"}],
+    "mocha-unneeded-done": true,
+    "no-for-in": true,
+    "no-function-expression": true,
+
+    // 禁止多行字符
+    "no-multiline-string": true, // multiline-strings often introduce unnecessary whitespace into the string literals
+
+    // 禁止从相对路径导入
+    "no-relative-imports": false,
+
+    "no-suspicious-comment": true,
+    "no-typeof-undefined": true,
+    "no-unnecessary-field-initialization": true,
+    "no-unnecessary-local-variable": true,
+    "no-unsupported-browser-code": true,
+    "no-useless-files": true,
+    "prefer-array-literal": true,
+    "underscore-consistent-invocation": true,
+
+    /**
+     * 无障碍 (Accessibility).
+     */
+    //
+    "react-a11y-anchors": true,
+    "react-a11y-aria-unsupported-elements": true,
+    "react-a11y-event-has-role": true,
+    "react-a11y-image-button-has-alt": true,
+    "react-a11y-img-has-alt": true,
+    "react-a11y-lang": true,
+    "react-a11y-meta": true,
+    "react-a11y-props": true,
+    "react-a11y-proptypes": true,
+    "react-a11y-role": true,
+    "react-a11y-role-has-required-aria-props": true,
+    "react-a11y-role-supports-aria-props": true,
+    "react-a11y-tabindex-no-positive": true,
+
+    // 标题
+    "react-a11y-titles": false,
+
+    /**
+     * Whitespace related rules.
+     */
+    //
+    "no-unnecessary-semicolons": true,
+    "no-single-line-block-comment": true,
+
+    /**
+     * Controversial/Configurable rules.
+     */
+    //
+    "prefer-type-cast": true   // pick either type-cast format and use it consistently
+
+
+  }
+}

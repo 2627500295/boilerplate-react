@@ -1,0 +1,111 @@
+/// <reference path="https://schemastore.azurewebsites.net/schemas/json/tsconfig.json" />
+
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "target": "es5",
+    "module": "esnext",
+
+    // ES 7 Decorator
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    // "sourceMap": true,
+    "inlineSourceMap": true,
+
+    // ES6 导入
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    // JSON导入
+    // "resolveJsonModule": true,
+
+    "lib": ["es6", "dom"],
+    "jsx": "react",
+    "moduleResolution": "node",
+
+    "pretty": true,
+    "declaration": true,
+
+
+    // 别名
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
+
+    // 错误信息显示语言
+    "locale": "zh-cn",
+
+
+    //
+    // 检查
+    //
+
+    // 严格检查
+    "strict": true,
+
+    // 以严格模式解析并为每个源文件生成 "use strict"语句
+    "alwaysStrict": true,
+
+    // 隐式 "any" 类型输出错误
+    "noImplicitAny": true,
+
+    // 严格 NULL 检查
+    "strictNullChecks": true,
+
+    // 禁用函数参数双向协变检查
+    "strictFunctionTypes": true,
+
+    // 类中初始化属性严格检查
+    "strictPropertyInitialization": true,
+
+    // 带隐式 "any" 的 "this" 表达式输出错误
+    "noImplicitThis": true,
+
+    // 若有未使用的局部变量则抛错
+    "noUnusedLocals": true,
+
+    // 若有未使用的参数则抛错
+    "noUnusedParameters": true,
+
+    // 不是函数的所有返回路径都有返回值时报错
+    "noImplicitReturns": true,
+
+    // 报告 switch 语句中遇到 fallthrough 情况的错误
+    "noFallthroughCasesInSwitch": true,
+
+    // 禁用在函数类型里对泛型签名进行严格检查
+    "noStrictGenericChecks": false,
+
+    // 不报告执行不到的代码错误
+    "allowUnreachableCode": false,
+
+    // 不报告未使用的标签错误
+    "allowUnusedLabels": false,
+
+    // 禁止对同一个文件的不一致的引用
+    "forceConsistentCasingInFileNames": false,
+
+    // 阻止对对象字面量的额外属性检查
+    "suppressExcessPropertyErrors": false,
+
+    // 阻止 --noImplicitAny 对缺少索引签名的索引对象报错
+    "suppressImplicitAnyIndexErrors": false
+  },
+
+
+  "exclude": [
+    "node_modules",
+    "package",
+    "build",
+    "dist",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
+  ],
+}
