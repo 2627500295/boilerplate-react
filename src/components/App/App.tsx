@@ -1,10 +1,11 @@
 import * as React from 'react';
 
 class App extends React.Component {
-  render() {
+  public render(): React.ReactNode {
     return (
       <div>
-        App
+        <h1>App</h1>
+        <p>1 2 3 4</p>
       </div>
     );
   }
