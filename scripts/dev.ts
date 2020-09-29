@@ -4,7 +4,8 @@ import { resolve } from './paths';
 // Webpack
 import webpack, {
   // DllReferencePlugin, DllPlugin,
-  NamedModulesPlugin, HotModuleReplacementPlugin, ProvidePlugin
+  NamedModulesPlugin, 
+  HotModuleReplacementPlugin, ProvidePlugin
 } from 'webpack';
 
 // 配置合并
@@ -36,7 +37,7 @@ const appEntry: string[] = [];
 (<webpack.Entry> baseConfig.entry).app = appEntry.concat([], (<string[]> (<webpack.Entry> baseConfig.entry).app));
 
 // 开发配置
-const devConfig: webpack.Configuration = merge(baseConfig, {
+const devConfig: webpack.Configuration & any = merge(baseConfig, {
   // 模式
   mode: 'development',
 
@@ -44,10 +45,15 @@ const devConfig: webpack.Configuration = merge(baseConfig, {
   devtool: 'inline-source-map',
 
   // 出口
-  output: { publicPath: '' },
+  output: { 
+    publicPath: '' 
+  },
 
   // 优化
-  optimization: { minimize: false },
+  optimization: { 
+    minimize: false,
+    namedModules: true
+  },
 
   // 模块
   module: {
@@ -57,27 +63,57 @@ const devConfig: webpack.Configuration = merge(baseConfig, {
       {
         test: /\.(css|postcss)$/,
         use: [
-          { loader: 'style-loader', options: { sourceMap: true } },
+          { 
+            loader: 'style-loader', 
+            options: { 
+              sourceMap: true
+             } 
+          },
           {
             loader: 'css-loader',
-            options: { sourceMap: true, modules: false, localIdentName: '[name]__[local]--[hash:base64:5]', importLoaders: 1 }
+            options: { 
+              sourceMap: true, 
+              modules: false, 
+              localIdentName: '[name]__[local]--[hash:base64:5]', 
+              importLoaders: 1 
+            }
           },
-          { loader: 'postcss-loader', options: { sourceMap: true} }
+          { 
+            loader: 'postcss-loader', 
+            options: { 
+              sourceMap: true
+            } 
+          }
         ],
-        exclude: /^node_modules$/
+        // exclude: /^node_modules$/
       },
 
       // Stylus
       {
         test: /\.(stylus|styl)$/,
         use: [
-          { loader: 'style-loader', options: { sourceMap: true } },
+          { 
+            loader: 'style-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          },
           {
             loader: 'css-loader',
             options: { sourceMap: true, modules: false, localIdentName: '[name]__[local]--[hash:base64:5]', importLoaders: 1 }
           },
-          { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'stylus-loader', options: { sourceMap: true } }
+          { 
+            loader: 'postcss-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          },
+          { 
+            loader: 'stylus-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          }
         ]
       },
 
@@ -85,30 +121,67 @@ const devConfig: webpack.Configuration = merge(baseConfig, {
       {
         test: /\.(sass|scss)$/,
         use: [
-          { loader: 'style-loader', options: { sourceMap: true } },
+          { 
+            loader: 'style-loader'
+          },
           {
             loader: 'css-loader',
-            options: { sourceMap: true, modules: false, localIdentName: '[name]__[local]--[hash:base64:5]', importLoaders: 1 }
+            options: { 
+              sourceMap: true, 
+              modules: false, 
+              // localIdentName: '[name]__[local]--[hash:base64:5]', 
+              importLoaders: 1 
+            }
           },
-          { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'sass-loader', options: { sourceMap: true } }
+          { 
+            loader: 'postcss-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          },
+          { 
+            loader: 'sass-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          }
         ],
-        exclude: /^node_modules$/
+        // exclude: /^node_modules$/
       },
 
       // Less
       {
         test: /\.less$/,
         use: [
-          { loader: 'style-loader', options: { sourceMap: true } },
+          { 
+            loader: 'style-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          },
           {
             loader: 'css-loader',
-            options: { sourceMap: true, modules: false, localIdentName: '[name]__[local]--[hash:base64:5]', importLoaders: 1 }
+            options: { 
+              sourceMap: true, 
+              modules: false, 
+              localIdentName: '[name]__[local]--[hash:base64:5]', 
+              importLoaders: 1 
+            }
           },
-          { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'less-loader', options: { sourceMap: true } }
+          { 
+            loader: 'postcss-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          },
+          { 
+            loader: 'less-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          }
         ],
-        exclude: /^node_modules$/
+        // exclude: /^node_modules$/
       }
     ]
   },
@@ -142,7 +215,7 @@ const devConfig: webpack.Configuration = merge(baseConfig, {
   // 开发用 Server
   devServer: {
     host: '127.0.0.1',
-    port: process.env.PORT || 8000,
+    port: (process.env.PORT ?? 8000) as number,
 
     // bundle目录
     publicPath: '/',

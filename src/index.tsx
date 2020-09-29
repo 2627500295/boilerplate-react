@@ -1,16 +1,10 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import render from '@microld/render';
+import React from 'react';
+import {render} from 'react-dom';
 
 import registerServiceWorker from './utils/registerServiceWorker';
 
 import Root from '@/containers/Root';
 
-@render(null, ReactDOM.render)
-export class Bootstrap extends Component {
-  public render(): React.ReactNode {
-    return <Root />;
-  }
-}
+render(<Root />, document.querySelector("#app"));
 
 registerServiceWorker();

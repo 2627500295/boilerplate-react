@@ -93,22 +93,14 @@ const baseConfig: webpack.Configuration = merge({}, {
     // 规则
     rules: [
       // ESLint
-      {
-        test: /\.(js|mjs|jsx|vue)$/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        include: resolve('src'),
-        exclude: /^(node_modules|bower_components)$/
-      },
+      // {
+      //   test: /\.(js|mjs|jsx|vue|ts|tsx)$/,
+      //   enforce: 'pre',
+      //   loader: 'eslint-loader',
+      //   include: resolve('src'),
+      //   exclude: /^(node_modules|bower_components)$/
+      // },
 
-      // TSLint
-      {
-        test: /\.(ts|tsx)$/,
-        enforce: 'pre',
-        loader: 'tslint-loader',
-        include: resolve('src'),
-        exclude: ['node_modules', 'bower_components']
-      },
       {
         oneOf: [
           // TypeScript

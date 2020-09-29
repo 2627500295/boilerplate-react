@@ -37,7 +37,53 @@ const buildConfig: webpack.Configuration = merge(baseConfig, {
 
   // 入口
   entry: {
-    react: ['react', 'react-dom', 'react-router', 'react-router-dom', 'redux', 'react-redux', 'mobx', 'mobx-react']
+    react: [
+      'react', 
+      'react-dom', 
+      'react-router', 
+      'react-router-dom', 
+      'redux', 
+      'react-redux', 
+      'mobx', 
+      'mobx-react'
+    ]
+  },
+
+  module: {
+    rules: [
+
+      // Sass
+      {
+        test: /\.(sass|scss)$/,
+        use: [
+          { 
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: { 
+              sourceMap: true, 
+              modules: false, 
+              // localIdentName: '[name]__[local]--[hash:base64:5]', 
+              importLoaders: 1 
+            }
+          },
+          { 
+            loader: 'postcss-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          },
+          { 
+            loader: 'sass-loader', 
+            options: { 
+              sourceMap: true 
+            } 
+          }
+        ],
+        // exclude: /^node_modules$/
+      },
+    ]
   },
 
   // // 外部组件
@@ -61,15 +107,32 @@ const buildConfig: webpack.Configuration = merge(baseConfig, {
     // 切割代码
     splitChunks: {
       cacheGroups: {
-      // 抽取所有CSS为一个文件
-      // https://webpack.js.org/plugins/mini-css-extract-plugin/#extracting-all-css-in-a-single-file
-      styles: { name: 'styles', test: /\.css$/, chunks: 'all', enforce: true },
+        // 抽取所有CSS为一个文件
+        // https://webpack.js.org/plugins/mini-css-extract-plugin/#extracting-all-css-in-a-single-file
+        styles: { 
+          name: 'styles', 
+          test: /\.css$/, 
+          chunks: 'all', 
+          enforce: true 
+        },
 
-      // 第三方组件
-      vendors: { test: /[\\/]node_modules[\\/]/, priority: -10, chunks: 'initial', name: 'vendors', enforce: true },
+        // 第三方组件
+        vendors: { 
+          test: /[\\/]node_modules[\\/]/, 
+          priority: -10, 
+          chunks: 'initial', 
+          name: 'vendors', 
+          enforce: true
+        },
 
-      // 指定组件
-      react: { test: 'react', priority: 1, chunks: 'initial', name: 'react', enforce: true }
+        // 指定组件
+        react: { 
+          test: 'react', 
+          priority: 1, 
+          chunks: 'initial', 
+          name: 'react', 
+          enforce: true 
+        }
       }
     }
   }
